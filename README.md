@@ -2,8 +2,6 @@
 
 Vulnventory is a lightweight Python CLI for organising penetration testing findings, evidence, screenshots, notes, captions, and report-writing support files.
 
-This project is no longer trying to write the final report for you. The goal is simpler and more useful:
-
 ```text
 raw screenshots / scan output / notes
   -> organised engagement folder
