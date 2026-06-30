@@ -42,7 +42,7 @@ The tool does not scan targets, discover findings, exploit systems, decide sever
 Install the optional terminal UI dependency:
 
 ```powershell
-py -m pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 If `rich` is not installed, the script automatically falls back to plain text output.
@@ -50,7 +50,7 @@ If `rich` is not installed, the script automatically falls back to plain text ou
 Windows examples use:
 
 ```powershell
-py vulnventory.py ...
+python3 vulnventory.py ...
 ```
 
 If `py` is not available:
@@ -99,13 +99,13 @@ tree
 Create an engagement:
 
 ```powershell
-py vulnventory.py init Example_Assessment
+python3 vulnventory.py init Example_Assessment
 ```
 
 Add scope notes:
 
 ```powershell
-py vulnventory.py set-scope Example_Assessment `
+python3 vulnventory.py set-scope Example_Assessment `
   --in-scope "192.0.2.10, web-app.example.test" `
   --out-of-scope "Third-party services, denial-of-service testing" `
   --rules "No destructive testing. Testing window 9am-5pm." `
@@ -118,14 +118,14 @@ For large scopes, do not paste every IP address, hostname, or rule into the comm
 Save your normal screenshot folder once:
 
 ```powershell
-py vulnventory.py set-inbox Example_Assessment `
+python3 vulnventory.py set-inbox Example_Assessment `
   --screenshots "C:\Path\To\Screenshots"
 ```
 
 Add a finding:
 
 ```powershell
-py vulnventory.py add-finding Example_Assessment `
+python3 vulnventory.py add-finding Example_Assessment `
   --id F-001 `
   --title "Anonymous LDAP bind enabled" `
   --severity Medium `
@@ -139,7 +139,7 @@ py vulnventory.py add-finding Example_Assessment `
 Take screenshots normally, then import the newest screenshot from the saved inbox:
 
 ```powershell
-py vulnventory.py import-new Example_Assessment `
+python3 vulnventory.py import-new Example_Assessment `
   --finding F-001 `
   --host directory-server.example.test
 ```
@@ -147,7 +147,7 @@ py vulnventory.py import-new Example_Assessment `
 Import the newest three screenshots:
 
 ```powershell
-py vulnventory.py import-new Example_Assessment `
+python3 vulnventory.py import-new Example_Assessment `
   --finding F-001 `
   --host directory-server.example.test `
   --count 3
@@ -156,7 +156,7 @@ py vulnventory.py import-new Example_Assessment `
 You can still import a specific file, folder, or glob pattern manually:
 
 ```powershell
-py vulnventory.py import Example_Assessment .\ldap_01_bind.png `
+python3 vulnventory.py import Example_Assessment .\ldap_01_bind.png `
   --finding F-001 `
   --host directory-server.example.test `
   --type screenshot `
@@ -166,62 +166,62 @@ py vulnventory.py import Example_Assessment .\ldap_01_bind.png `
 Review evidence:
 
 ```powershell
-py vulnventory.py list-evidence Example_Assessment --finding F-001
+python3 vulnventory.py list-evidence Example_Assessment --finding F-001
 ```
 
 Improve a caption:
 
 ```powershell
-py vulnventory.py caption-evidence Example_Assessment E-0001 `
+python3 vulnventory.py caption-evidence Example_Assessment E-0001 `
   --caption "LDAP query completed successfully without authentication"
 ```
 
 Delete evidence from the index, but keep the copied evidence file on disk:
 
 ```powershell
-py vulnventory.py delete-evidence Example_Assessment E-0001
+python3 vulnventory.py delete-evidence Example_Assessment E-0001
 ```
 
 Delete evidence from the index and remove the stored copy inside the engagement folder:
 
 ```powershell
-py vulnventory.py delete-evidence Example_Assessment E-0001 --delete-file
+python3 vulnventory.py delete-evidence Example_Assessment E-0001 --delete-file
 ```
 
 Delete a finding that has no linked evidence:
 
 ```powershell
-py vulnventory.py delete-finding Example_Assessment F-001
+python3 vulnventory.py delete-finding Example_Assessment F-001
 ```
 
 If the finding still has linked evidence, either delete those evidence IDs first or explicitly delete the linked evidence with the finding:
 
 ```powershell
-py vulnventory.py delete-finding Example_Assessment F-001 --delete-evidence
+python3 vulnventory.py delete-finding Example_Assessment F-001 --delete-evidence
 ```
 
 Check what is missing:
 
 ```powershell
-py vulnventory.py missing Example_Assessment
+python3 vulnventory.py missing Example_Assessment
 ```
 
 Generate the writing brief:
 
 ```powershell
-py vulnventory.py build-brief Example_Assessment
+python3 vulnventory.py build-brief Example_Assessment
 ```
 
 Export clean figure files:
 
 ```powershell
-py vulnventory.py export-figures Example_Assessment
+python3 vulnventory.py export-figures Example_Assessment
 ```
 
 Create a complete report-writing package:
 
 ```powershell
-py vulnventory.py package-report Example_Assessment --zip
+python3 vulnventory.py package-report Example_Assessment --zip
 ```
 
 ## Engagement Structure
@@ -249,7 +249,7 @@ Example_Assessment/
 For a small engagement, `set-scope` can store the important scope notes directly:
 
 ```powershell
-py vulnventory.py set-scope Example_Assessment `
+python3 vulnventory.py set-scope Example_Assessment `
   --in-scope "192.0.2.10, web-app.example.test" `
   --out-of-scope "DoS testing, third-party systems" `
   --rules "No destructive testing"
@@ -270,7 +270,7 @@ For a large engagement, treat `00_scope/` as the source of truth. Store the real
 Then use `set-scope` to point to those files:
 
 ```powershell
-py vulnventory.py set-scope Example_Assessment `
+python3 vulnventory.py set-scope Example_Assessment `
   --in-scope "See 00_scope/asset_list.csv and 00_scope/ip_ranges.txt" `
   --out-of-scope "See 00_scope/excluded_assets.txt" `
   --rules "No DoS. See 00_scope/rules_of_engagement.pdf" `
@@ -297,14 +297,14 @@ The screenshot inbox workflow avoids copying screenshots into the project root a
 Set the inbox once:
 
 ```powershell
-py vulnventory.py set-inbox Example_Assessment `
+python3 vulnventory.py set-inbox Example_Assessment `
   --screenshots "C:\Path\To\Screenshots"
 ```
 
 Then import the newest screenshot:
 
 ```powershell
-py vulnventory.py import-new Example_Assessment `
+python3 vulnventory.py import-new Example_Assessment `
   --finding F-001 `
   --host web-app.example.test
 ```
@@ -312,7 +312,7 @@ py vulnventory.py import-new Example_Assessment `
 Import the newest three screenshots:
 
 ```powershell
-py vulnventory.py import-new Example_Assessment `
+python3 vulnventory.py import-new Example_Assessment `
   --finding F-001 `
   --host web-app.example.test `
   --count 3
@@ -325,7 +325,7 @@ By default, `import-new` skips screenshot files that were already imported from 
 If needed, allow re-importing already imported files:
 
 ```powershell
-py vulnventory.py import-new Example_Assessment `
+python3 vulnventory.py import-new Example_Assessment `
   --finding F-001 `
   --host web-app.example.test `
   --count 1 `
@@ -335,7 +335,7 @@ py vulnventory.py import-new Example_Assessment `
 Only import screenshots taken recently:
 
 ```powershell
-py vulnventory.py import-new Example_Assessment `
+python3 vulnventory.py import-new Example_Assessment `
   --finding F-001 `
   --host web-app.example.test `
   --count 5 `
@@ -345,7 +345,7 @@ py vulnventory.py import-new Example_Assessment `
 Use a different screenshot folder for one import without changing the saved inbox:
 
 ```powershell
-py vulnventory.py import-new Example_Assessment `
+python3 vulnventory.py import-new Example_Assessment `
   --finding F-001 `
   --host web-app.example.test `
   --count 2 `
@@ -420,7 +420,7 @@ Informational
 Use this before writing the final report:
 
 ```powershell
-py vulnventory.py missing Example_Assessment
+python3 vulnventory.py missing Example_Assessment
 ```
 
 Example:
@@ -438,7 +438,7 @@ F-001 - Anonymous LDAP bind enabled
 Generate:
 
 ```powershell
-py vulnventory.py build-brief Example_Assessment
+python3 vulnventory.py build-brief Example_Assessment
 ```
 
 Output:
@@ -467,7 +467,7 @@ This is a writing pack, not a final report.
 Generate clean report-ready image names:
 
 ```powershell
-py vulnventory.py export-figures Example_Assessment
+python3 vulnventory.py export-figures Example_Assessment
 ```
 
 Output:
@@ -481,7 +481,7 @@ Output:
 Export only one finding:
 
 ```powershell
-py vulnventory.py export-figures Example_Assessment --finding F-001
+python3 vulnventory.py export-figures Example_Assessment --finding F-001
 ```
 
 ## Report Package
@@ -489,7 +489,7 @@ py vulnventory.py export-figures Example_Assessment --finding F-001
 Create a full writing bundle:
 
 ```powershell
-py vulnventory.py package-report Example_Assessment --zip
+python3 vulnventory.py package-report Example_Assessment --zip
 ```
 
 Output:
@@ -512,7 +512,7 @@ This is the most useful output when you want to write the final report in Word o
 Create a note and import it as evidence:
 
 ```powershell
-py vulnventory.py add-note Example_Assessment `
+python3 vulnventory.py add-note Example_Assessment `
   --title "LDAP testing note" `
   --body "Anonymous bind was observed during enumeration." `
   --finding F-001 `
@@ -522,11 +522,11 @@ py vulnventory.py add-note Example_Assessment `
 ## Status And Tree
 
 ```powershell
-py vulnventory.py status Example_Assessment
+python3 vulnventory.py status Example_Assessment
 ```
 
 ```powershell
-py vulnventory.py tree Example_Assessment
+python3 vulnventory.py tree Example_Assessment
 ```
 
 ## Suggested Direction
