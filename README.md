@@ -50,7 +50,7 @@ If `rich` is not installed, the script automatically falls back to plain text ou
 Windows examples use:
 
 ```powershell
-python3 vulnventory.py ...
+py vulnventory.py ...
 ```
 
 If `py` is not available:
