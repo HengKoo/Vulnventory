@@ -12,7 +12,7 @@ raw screenshots / scan output / notes
   -> final report written manually in Word, RStudio, or another editor
 ```
 
-The tool does not scan targets, discover findings, exploit systems, decide severity, or use AI. Findings are entered manually by the tester.
+The tool does not scan targets, discover findings, exploit systems, and decide severity. Findings are entered manually by the tester.
 
 ## Features
 
